@@ -1,12 +1,10 @@
-## Interface: 120105, 16001
+## Interface: 16001
 ## Title: CrosshairsPlus
-## Notes: Enhanced crosshair addon with customizable target filtering and visual styles
-## Author: justLuther
-## Version: 1.6.2
+## Notes: Enhanced crosshair addon with customizable target filtering and visual styles (WoW Forever port)
+## Author: justLuther (Forever port by Mnxx29)
+## Version: 1.6.2-forever
 ## IconTexture: Interface\AddOns\CrosshairsPlus\Assets\Logo
 ## SavedVariables: CrosshairsPlusDB
-## X-Curse-Project-ID: 1381856
-## X-Wago-ID: aN0YQv6j
 
 # Libraries
 Libs/LibStub/LibStub.lua

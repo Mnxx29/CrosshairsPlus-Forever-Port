@@ -1,12 +1,13 @@
-# CrosshairsPlus
+# CrosshairsPlus (WoW Forever Port)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CurseForge](https://img.shields.io/badge/CurseForge-Download-F16436?logo=curseforge&logoColor=white)](https://www.curseforge.com/wow/addons/crosshairsplus)
-[![Wago](https://img.shields.io/badge/Wago-Download-A34FE0)](https://addons.wago.io/addons/crosshairsplus)
 
-**Author:** justLuther
+**Original Author:** justLuther ([mikhaben/CrosshairsPlus](https://github.com/mikhaben/CrosshairsPlus))
+**WoW Forever Port:** Mnxx29
 
-A World of Warcraft addon that displays a customizable crosshair overlay on your target's nameplate. Great for PvP targeting and raid awareness.
+A World of Warcraft: Forever (`1.60.1`, interface `16001`) port of **CrosshairsPlus**, an addon that displays a customizable crosshair overlay on your target's nameplate. Great for PvP targeting and dungeon/raid awareness.
+
+> For the official Retail version, see [CrosshairsPlus on CurseForge](https://www.curseforge.com/wow/addons/crosshairsplus) or [Wago](https://addons.wago.io/addons/crosshairsplus).
 
 ## Features
 
@@ -73,7 +74,8 @@ Releases are cut by the maintainer by pushing a version tag on `main`; the steps
 
 ## Credits
 
-**Author:** justLuther
+**Original Author:** justLuther ([mikhaben/CrosshairsPlus](https://github.com/mikhaben/CrosshairsPlus))
+**WoW Forever Port:** Mnxx29
 
 **Special Thanks:**
 - **ElvUI** - Arrow icon textures
