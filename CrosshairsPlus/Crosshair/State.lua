@@ -57,3 +57,17 @@ function CPlusNS.SetTextAnchor(textFrame, anchorTo, position, xOff, yOff)
     local a = TEXT_ANCHORS[position]
     if a then textFrame:SetPoint(a[1], anchorTo, a[2], xOff, yOff) end
 end
+
+function CPlusNS.IsSecret(value)
+    return issecretvalue ~= nil and issecretvalue(value)
+end
+
+function CPlusNS.SafeString(value, fallback)
+    if CPlusNS.IsSecret(value) then
+        return "<secret>"
+    end
+    if value == nil then
+        return fallback or ""
+    end
+    return tostring(value)
+end

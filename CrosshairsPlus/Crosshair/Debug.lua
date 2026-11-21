@@ -16,14 +16,14 @@ end
 
 function CPlusNS.DebugUnitInfo(unit)
     if not unit or not UnitExists(unit) then return "nil" end
-    local name = GetUnitName(unit, false) or "?"
-    local reaction = UnitReaction("player", unit) or "?"
+    local name = CPlusNS.SafeString(GetUnitName(unit, false), "?")
+    local reaction = CPlusNS.SafeString(UnitReaction("player", unit), "?")
     local dead = UnitIsDead(unit) and " DEAD" or ""
     local hostile = (UnitCanAttack("player", unit) or UnitIsEnemy("player", unit)) and "hostile" or "friendly"
     local threat = UnitThreatSituation("player", unit)
-    local threatStr = threat and (" threat=" .. threat) or ""
+    local threatStr = (CPlusNS.IsSecret(threat) or threat ~= nil) and (" threat=" .. CPlusNS.SafeString(threat, "?")) or ""
     local hasPlate = C_NamePlate.GetNamePlateForUnit(unit, true) and "yes" or "no"
-    return string.format("%s (%s) reaction=%s %s%s%s plate=%s", name, unit, tostring(reaction), hostile, dead, threatStr, hasPlate)
+    return string.format("%s (%s) reaction=%s %s%s%s plate=%s", name, unit, reaction, hostile, dead, threatStr, hasPlate)
 end
 
 function CPlusNS.ToggleDebug()

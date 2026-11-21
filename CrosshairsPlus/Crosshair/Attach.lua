@@ -70,7 +70,7 @@ function CPlusNS.AttachToNameplate(nameplate)
 
     if CPlusNS.db.debugMode then
         CPlusNS.Debugf("AttachToNameplate: %s (%s) wasShown=%s",
-            GetUnitName(state.activeUnit, false) or "Unknown", state.activeUnit, tostring(frame:IsShown()))
+            CPlusNS.SafeString(GetUnitName(state.activeUnit, false), "Unknown"), state.activeUnit, tostring(frame:IsShown()))
     end
 
     frame:ClearAllPoints()
@@ -110,7 +110,7 @@ function CPlusNS.AttachToNameplate(nameplate)
     state.lastUnitR, state.lastUnitG, state.lastUnitB = r, g, b
     if CPlusNS.db.debugMode then
         CPlusNS.Debugf("Applying color to %s: R=%.2f G=%.2f B=%.2f",
-            GetUnitName(state.activeUnit, false) or "Unknown", r, g, b)
+            CPlusNS.SafeString(GetUnitName(state.activeUnit, false), "Unknown"), r, g, b)
     end
     CPlusNS.ApplyColorToTextures(r, g, b)
 

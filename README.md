@@ -28,8 +28,10 @@ A World of Warcraft addon that displays a customizable crosshair overlay on your
 
 1. Download the latest release ZIP
 2. Extract **both** `CrosshairsPlus` and `CrosshairsPlus_Range` into your WoW AddOns directory:
-   - **Windows:** `World of Warcraft\_retail_\Interface\AddOns\`
-   - **macOS:** `World of Warcraft/_retail_/Interface/AddOns/`
+   - **Retail (Windows):** `World of Warcraft\_retail_\Interface\AddOns\`
+   - **Retail (macOS):** `World of Warcraft/_retail_/Interface/AddOns/`
+   - **WoW Forever (Windows):** `World of Warcraft\_forever_\Interface\AddOns\`
+   - **WoW Forever (macOS):** `World of Warcraft/_forever_/Interface/AddOns/`
 3. `/reload` in-game
 
 > **Note:** `CrosshairsPlus_Range` is an optional LoadOnDemand sub-addon that provides range display via LibRangeCheck-3.0. The main addon works without it, but the Range tab and range numbers will not be available.

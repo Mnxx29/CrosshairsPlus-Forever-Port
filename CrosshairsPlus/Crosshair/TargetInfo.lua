@@ -11,18 +11,23 @@ function CPlusNS.RefreshTargetInfoText()
         return
     end
 
-    local name = GetUnitName(state.activeUnit, false) or ""
-    local text
-
-    if CPlusNS.db.targetInfoMode == "namelevel" then
-        local level = UnitLevel(state.activeUnit)
-        local levelStr = (level and level > 0) and tostring(level) or "??"
-        text = name .. " - " .. levelStr
+    local name = GetUnitName(state.activeUnit, false)
+    if CPlusNS.IsSecret(name) then
+        frame.TargetInfoText:SetText(name)
     else
-        text = name
-    end
+        name = name or ""
+        local text
 
-    frame.TargetInfoText:SetText(text)
+        if CPlusNS.db.targetInfoMode == "namelevel" then
+            local level = UnitLevel(state.activeUnit)
+            local levelStr = (not CPlusNS.IsSecret(level) and level and level > 0) and tostring(level) or "??"
+            text = name .. " - " .. levelStr
+        else
+            text = name
+        end
+
+        frame.TargetInfoText:SetText(text)
+    end
 
     if CPlusNS.db.targetInfoUseTargetColor then
         frame.TargetInfoText:SetTextColor(state.lastUnitR, state.lastUnitG, state.lastUnitB)

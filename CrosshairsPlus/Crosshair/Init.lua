@@ -52,7 +52,9 @@ function CPlusNS.InitializeCrosshair()
     CPlusNS.EventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
     CPlusNS.EventFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
     CPlusNS.EventFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
-    CPlusNS.EventFrame:RegisterEvent("PLAYER_SOFT_ENEMY_CHANGED")
+    if not C_EventUtils or C_EventUtils.IsEventValid("PLAYER_SOFT_ENEMY_CHANGED") then
+        CPlusNS.EventFrame:RegisterEvent("PLAYER_SOFT_ENEMY_CHANGED")
+    end
 
     CPlusNS.Debug("Events registered")
 
@@ -115,7 +117,7 @@ function CPlusNS:NAME_PLATE_UNIT_ADDED(unitToken)
 
     if CPlusNS.db.debugMode then
         CPlusNS.Debugf("NAME_PLATE_UNIT_ADDED for %s: %s",
-            state.activeUnit, GetUnitName(state.activeUnit, false) or "Unknown")
+            state.activeUnit, CPlusNS.SafeString(GetUnitName(state.activeUnit, false), "Unknown"))
     end
 
     local isRapidCycle = (GetTime() - lastRemovedTime) < RAPID_THRESHOLD

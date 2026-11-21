@@ -45,23 +45,27 @@ function CPlusNS.CheckNameplateCVars()
     local warnings = {}
     local db = CPlusNS.db
 
-    if GetCVar("nameplateShowAll") ~= "1" then
+    local showAll = GetCVar("nameplateShowAll")
+    if showAll ~= nil and showAll ~= "1" then
         table.insert(warnings, "Nameplates are disabled (Ctrl+V to toggle, or Interface > Names > Always Show Nameplates)")
         return warnings
     end
 
     local missing = {}
 
+    local showEnemies = GetCVar("nameplateShowEnemies")
     if db.showEnemy and (db.showEnemyPlayers or db.showEnemyNPCs or db.showEnemyCritters)
-        and GetCVar("nameplateShowEnemies") ~= "1" then
+        and showEnemies ~= nil and showEnemies ~= "1" then
         table.insert(missing, "Enemy Units")
     end
+    local showFriends = GetCVar("nameplateShowFriends")
     if db.showFriendly and db.showFriendlyPlayers
-        and GetCVar("nameplateShowFriends") ~= "1" then
+        and showFriends ~= nil and showFriends ~= "1" then
         table.insert(missing, "Friendly Players")
     end
+    local showFriendlyNPCs = GetCVar("nameplateShowFriendlyNPCs")
     if db.showFriendly and (db.showFriendlyNPCs or db.showFriendlyCritters)
-        and GetCVar("nameplateShowFriendlyNPCs") ~= "1" then
+        and showFriendlyNPCs ~= nil and showFriendlyNPCs ~= "1" then
         table.insert(missing, "Friendly NPCs")
     end
 
@@ -86,14 +90,19 @@ end
 local function GetReactionColor(unit)
     local reaction = UnitReaction("player", unit)
 
-    if reaction and reaction == 4 and UnitThreatSituation("player", unit) ~= nil then
-        local color = FACTION_BAR_COLORS[2]
-        return color.r, color.g, color.b
-    end
+    if not CPlusNS.IsSecret(reaction) then
+        if reaction == 4 then
+            local threat = UnitThreatSituation("player", unit)
+            if not CPlusNS.IsSecret(threat) and threat ~= nil then
+                local color = FACTION_BAR_COLORS[2]
+                return color.r, color.g, color.b
+            end
+        end
 
-    if reaction and FACTION_BAR_COLORS[reaction] then
-        local color = FACTION_BAR_COLORS[reaction]
-        return color.r, color.g, color.b
+        if reaction and FACTION_BAR_COLORS[reaction] then
+            local color = FACTION_BAR_COLORS[reaction]
+            return color.r, color.g, color.b
+        end
     end
 
     if IsHostile(unit) then
@@ -110,7 +119,8 @@ function CPlusNS.GetUnitColor(unit)
 
     local db = CPlusNS.db
 
-    if UnitIsTapDenied(unit) then
+    local tapDenied = UnitIsTapDenied(unit)
+    if not CPlusNS.IsSecret(tapDenied) and tapDenied then
         return 0.5, 0.5, 0.5
     end
 
@@ -129,7 +139,7 @@ function CPlusNS.GetUnitColor(unit)
 
     if mode == "class" and UnitIsPlayer(unit) then
         local _, class = UnitClass(unit)
-        if not issecretvalue(class) and class and RAID_CLASS_COLORS[class] then
+        if not CPlusNS.IsSecret(class) and class and RAID_CLASS_COLORS[class] then
             local color = RAID_CLASS_COLORS[class]
             return color.r, color.g, color.b
         end

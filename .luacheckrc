@@ -12,6 +12,7 @@ globals = {
 
 read_globals = {
     "C_AddOns",
+    "C_EventUtils",
     "C_NamePlate",
     "C_Timer",
     "CreateFrame",

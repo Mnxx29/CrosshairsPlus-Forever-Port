@@ -1,4 +1,4 @@
-## Interface: 120105
+## Interface: 120105, 16001
 ## Title: CrosshairsPlus
 ## Notes: Enhanced crosshair addon with customizable target filtering and visual styles
 ## Author: justLuther
